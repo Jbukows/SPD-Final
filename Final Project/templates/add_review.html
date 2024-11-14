@@ -1,0 +1,28 @@
+{% include 'nav.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Review</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Add a Review for {{ resource['title'] }}</h2>
+        <form method="POST">
+            <div class="form-group">
+                <label for="rating">Rating (1 to 5):</label>
+                <input type="number" id="rating" name="rating" min="1" max="5" required>
+            </div>
+            <div class="form-group">
+                <label for="comment">Comment:</label>
+                <textarea id="comment" name="comment" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Submit Review</button>
+        </form>
+    </div>
+</body>
+</html>
+

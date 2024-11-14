@@ -1,0 +1,34 @@
+{% include 'nav.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Message</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Send a Message</h2>
+        <form method="POST" class="form-container">
+            <div class="form-group">
+                <label for="receiver_id">Select Recipient:</label>
+                <select id="receiver_id" name="receiver_id" required>
+                    {% for user in users %}
+                        {% if user['user_id'] != session['user_id'] %}
+                            <option value="{{ user['user_id'] }}">{{ user['name'] }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="content">Message:</label>
+                <textarea id="content" name="content" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Send Message</button>
+        </form>
+    </div>
+</body>
+</html>
+

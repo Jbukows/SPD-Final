@@ -1,0 +1,30 @@
+{% include 'nav.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Messages</h2>
+        <div class="message-container">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="message-card">
+                        <p><strong>From:</strong> {{ message['sender_name'] }} <strong>To:</strong> {{ message['receiver_name'] }}</p>
+                        <p>{{ message['content'] }}</p>
+                        <span class="message-timestamp">{{ message['timestamp'] }}</span>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No messages available.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
+

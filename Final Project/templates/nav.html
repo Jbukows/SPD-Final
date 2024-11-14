@@ -1,0 +1,31 @@
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="{{ url_for('index') }}" class="logo">Smart Neighborhood Exchange</a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            {% if session.get('user_id') %}
+                <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ url_for('add_resource') }}">Add Resource</a></li>
+                <li><a href="{{ url_for('forum') }}">Forum</a></li>
+                <li><a href="{{ url_for('send_message') }}">Send Message</a></li>
+                <li><a href="{{ url_for('profile', user_id=session['user_id']) }}">EditProfile</a></li>
+                <li><a href="{{ url_for('edit_profile') }}">Profile</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% else %}
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('register') }}">Register</a></li>
+            {% endif %}
+        </ul>
+        <div class="hamburger" id="hamburger" onclick="toggleNav()">
+            &#9776; <!-- Unicode character for hamburger menu -->
+        </div>
+    </div>
+</nav>
+
+<script>
+    function toggleNav() {
+        const navLinks = document.getElementById('navLinks');
+        navLinks.classList.toggle('show');
+    }
+</script>
+

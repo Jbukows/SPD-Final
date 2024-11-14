@@ -1,0 +1,29 @@
+{% include 'nav.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h2>{{ user['name'] }}'s Profile</h2>
+        <div class="profile-section">
+            {% if user['profile_image'] %}
+            <img src="{{ url_for('static', filename=user['profile_image']) }}" alt="Profile Image"
+                class="profile-image">
+            {% else %}
+            <p>No profile image available.</p>
+            {% endif %}
+            <p><strong>Location:</strong> {{ user['location'] }}</p>
+            <p><strong>Reputation Score:</strong> {{ user['reputation_score'] }}</p>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+{% include 'nav.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Neighborhood Exchange</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome, {{ session['name'] if session.get('user_id') else 'Guest' }}!</h2>
+        <h3>Top Rated Users</h3>
+        <section class="top-rated-users">
+            {% if top_users %}
+                <div class="user-grid">
+                    {% for user in top_users %}
+                        <div class="user-card">
+                            <div class="user-info">
+                                <p><strong>{{ user['name'] }}</strong></p>
+                                <p>Reputation Score: {{ user['reputation_score'] }}/5</p>
+                            </div>
+                            
+                            <!-- Show review button if the logged-in user is not the current user -->
+                            {% if session.get('user_id') and session['user_id'] != user['user_id'] %}
+                                <a href="{{ url_for('rate_user', user_id=user['user_id']) }}" class="btn-submit">Leave a Review</a>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>No top-rated users available.</p>
+            {% endif %}
+        </section>
+    
+        <section class="recent-listings">
+            <h3>Recent Listings</h3>
+            {% if resources %}
+                <div class="listing-grid">
+                    {% for resource in resources %}
+                        <div class="listing-card">
+                            <h4>{{ resource['title'] }}</h4>
+                            {% if resource['images'] %}
+                                <img src="{{ url_for('static', filename=resource['images']) }}" alt="Resource Image" class="listing-image">
+                            {% else %}
+                                <p>No image available</p>
+                            {% endif %}
+                            <p>{{ resource['description'] }}</p>
+                            <p><strong>Category:</strong> {{ resource['category'] }}</p>
+                            <p><strong>Date Posted:</strong> {{ resource['date_posted'] }}</p>
+                            <p><strong>Owner:</strong> {{ resource['owner_name'] }}</p>
+    
+                            <!-- Show both buttons if the logged-in user is not the owner -->
+                            {% if session.get('user_id') and session['user_id'] != resource['user_id'] %}
+                                <a href="{{ url_for('add_review', resource_id=resource['resource_id']) }}" class="btn-submit">Leave a Review</a>
+                                <a href="{{ url_for('reserve_resource', resource_id=resource['resource_id']) }}" class="btn-reserve">Book Reservation</a>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>No recent listings available.</p>
+            {% endif %}
+        </section>
+    
+        <section class="recent-reviews">
+            <h3>Recent Reviews</h3>
+            {% if reviews %}
+                <ul class="review-list">
+                    {% for review in reviews %}
+                        <li class="review-item">
+                            <h4>{{ review['resource_title'] }}</h4>
+                            {% if review['resource_image'] %}
+                                <img src="{{ url_for('static', filename=review['resource_image']) }}" alt="Review Image" class="review-image">
+                            {% endif %}
+                            <p><strong>{{ review['reviewer_name'] }}</strong> rated it {{ review['rating'] }}/5</p>
+                            <p>{{ review['comment'] }}</p>
+                            <span class="review-timestamp">{{ review['timestamp'] }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No recent reviews available.</p>
+            {% endif %}
+        </section>
+    </div>
+
+
+
+

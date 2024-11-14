@@ -1,0 +1,45 @@
+{% include 'nav.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ resource['title'] }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>{{ resource['title'] }}</h2>
+        {% if resource['images'] %}
+            <img src="{{ url_for('static', filename=resource['images']) }}" alt="Resource Image" class="listing-image">
+        {% else %}
+            <p>No image available</p>
+        {% endif %}
+        <p>{{ resource['description'] }}</p>
+        <p><strong>Category:</strong> {{ resource['category'] }}</p>
+        <p><strong>Date Posted:</strong> {{ resource['date_posted'] }}</p>
+    </div>
+
+        <section class="reviews">
+            <h3>Reviews</h3>
+            {% if reviews %}
+                <ul class="review-list">
+                    {% for review in reviews %}
+                        <li class="review-item">
+                            <div class="review-header">
+                                <strong>{{ review['name'] }}</strong> rated it {{ review['rating'] }}/5
+                                <span class="review-timestamp">{{ review['timestamp'] }}</span>
+                            </div>
+                            <p>{{ review['comment'] }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No reviews yet. Be the first to review!</p>
+            {% endif %}
+        </section>
+    </div>
+</body>
+</html>
+

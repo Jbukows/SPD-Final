@@ -1,0 +1,821 @@
+/* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h2, h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.section {
+    margin-bottom: 40px;
+}
+
+.user-grid, .review-grid, .listing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.user-card, .review-card, .listing-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    text-align: center; /* Center text within the card */
+}
+
+.user-card:hover, .review-card:hover, .listing-card:hover {
+    transform: translateY(-5px);
+}
+
+.highlight {
+    color: #3498db;
+    font-weight: bold;
+}
+
+.review-timestamp, .listing-date {
+    display: block;
+    font-size: 0.85em;
+    color: #888;
+    margin-top: 10px;
+}
+
+p {
+    margin: 10px 0;
+}
+
+
+a {
+    color: #3498db;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #2980b9;
+}
+
+/* Navigation Bar */
+
+
+.nav-logo {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.nav-links a:hover {
+    background-color: #555;
+}
+
+.navbar {
+    width: 100%;
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+}
+
+.hamburger {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+/* Responsive design: Hide the nav links and show the hamburger icon on smaller screens */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: #333;
+        width: 95%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+    }
+
+    .nav-links a {
+        padding: 12px 20px;
+        text-align: center;
+        border-bottom: 1px solid #444;
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
+    .hamburger {
+        display: block;
+    }
+}
+
+/* Section Styling */
+.listing-container, .user-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.listing-card, .user-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    width: 250px;
+    text-align: center;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-reserve {
+    background-color: #28a745;
+    color: #fff;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.user-card {
+    display: flex;
+    flex-direction: row; /* Aligns items horizontally */
+    align-items: center; /* Vertically centers items */
+    justify-content: center; /* Adds space between the user info and the button */
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin: 0 auto;
+}
+
+.listing-grid {
+    display: flex;
+    flex-wrap: wrap; /* Allows items to wrap to the next line */
+    gap: 20px; /* Adds space between items */
+    justify-content: space-between; /* Adds space between items */
+    margin: 0 auto;
+}
+
+.listing-card {
+    display: flex;
+    flex-direction: column; /* Stacks the content vertically inside each card */
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    width: 100%; /* Adjust this value as needed to control the width of each card */
+    max-width: 300px; /* Ensures the cards don't get too wide */
+}
+
+.listing-content {
+    display: flex;
+    flex-direction: row; /* Aligns items horizontally */
+    flex-wrap: wrap; /* Allows content to wrap within the flex container */
+    align-items: center; /* Vertically centers items */
+    justify-content: space-between; /* Adds space between the content and the button */
+}
+
+.listing-info {
+    flex: 3; /* Allows the info to take more space */
+}
+
+.delete-form {
+    flex: 1; /* Keeps the delete button at a reasonable width */
+}
+
+.user-info {
+    flex: 1; /* Allows the user info to take up available space */
+}
+
+.btn-reserve:hover {
+    background-color: #218838;
+}
+
+.btn-approve {
+    background-color: #28a745;
+    color: #fff;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.btn-reject {
+    background-color: #dc3545;
+    color: #fff;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-approve:hover {
+    background-color: #218838;
+}
+
+.btn-reject:hover {
+    background-color: #c82333;
+}
+.reservation-card {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.btn-approve, .btn-reject {
+    flex: 1; /* Make buttons the same width */
+    margin-right: 5px;
+}
+
+.btn-reject {
+    margin-right: 0; /* Remove the right margin for the last button */
+}
+
+.btn-approve {
+    background-color: #28a745;
+    color: #fff;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.approve-decline{
+    display: flex;
+}
+
+.btn-reject {
+    background-color: #dc3545;
+    color: #fff;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-approve:hover {
+    background-color: #218838;
+}
+
+.btn-reject:hover {
+    background-color: #c82333;
+}
+
+
+.listing-card a, .user-card a {
+    display: inline-block;
+    margin-top: 10px;
+    background-color: #3498db;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.listing-card a:hover, .user-card a:hover {
+    background-color: #2980b9;
+}
+
+.listing-image {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    display: block;
+    margin: 20px auto;
+    object-fit: cover;
+}
+
+form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+select, input[type="text"], button {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.btn-submit {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-submit:hover {
+    background-color: #2980b9;
+}
+
+/* General Styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Section Headers */
+h2, h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Form Styling */
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"], input[type="email"], input[type="password"], input[type="number"], select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: vertical;
+}
+
+button, .btn-submit {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover, .btn-submit:hover {
+    background-color: #2980b9;
+}
+
+/* Card Styling */
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Grid Layout */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* Navigation Bar */
+.navbar {
+    background-color: #333;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.navbar a:hover {
+    background-color: #555;
+}
+
+/* Additional Styling for Specific Elements */
+.highlight {
+    color: #3498db;
+    font-weight: bold;
+}
+
+.message-timestamp, .listing-date {
+    display: block;
+    font-size: 0.85em;
+    color: #888;
+    margin-top: 10px;
+}
+
+.flash-message {
+    background-color: #f0c674;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    h2, h3 {
+        font-size: 1.5rem;
+    }
+}
+
+.profile-section {
+    margin-top: 20px;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    object-fit: cover;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+p {
+    margin: 10px 0;
+}
+
+strong {
+    color: #333;
+}
+
+.resource-details {
+    margin-bottom: 20px;
+}
+
+.btn-submit {
+    display: inline-block;
+    margin-top: 15px;
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-submit:hover {
+    background-color: #2980b9;
+}
+
+.reviews {
+    margin-top: 30px;
+}
+
+.review-list {
+    list-style: none;
+    padding: 0;
+}
+
+.review-item {
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.review-timestamp {
+    font-size: 0.85em;
+    color: #888;
+}
+
+.dashboard-section {
+    margin-top: 20px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.listing-card {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.listing-card:hover {
+    transform: translateY(-3px);
+}
+
+.listing-image {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.no-image {
+    font-style: italic;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.btn-view {
+    display: inline-block;
+    margin-top: 10px;
+    background-color: #3498db;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.btn-view:hover {
+    background-color: #2980b9;
+}
+
+h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.message-section {
+    margin-top: 20px;
+}
+
+.message-list {
+    list-style: none;
+    padding: 0;
+}
+
+.message-item {
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.message-item:hover {
+    transform: translateY(-3px);
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.message-timestamp {
+    font-size: 0.85em;
+    color: #888;
+}
+
+p {
+    margin: 0;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.btn-submit {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-submit:hover {
+    background-color: #2980b9;
+}
+
+.links {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.links a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.links a:hover {
+    text-decoration: underline;
+}
+
+.btn-delete {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.btn-delete:hover {
+    background-color: #c0392b;
+}
+
+@media (max-width: 1200px) {
+    .navbar {
+        padding: 10px;
+    }
+    .nav-links {
+        font-size: 0.9rem; /* Slightly smaller text */
+    }
+}
+
+/* For screens smaller than 992px (e.g., tablets in portrait mode) */
+@media (max-width: 992px) {
+    .nav-container {
+        flex-direction: column; /* Stack items vertically */
+        align-items: flex-start;
+    }
+    .nav-links {
+        display: none; /* Hide the nav links by default */
+        flex-direction: column; /* Stack links vertically */
+        width: 100%; /* Full width for mobile view */
+    }
+    .nav-links.show {
+        display: flex; /* Show nav links when toggled */
+    }
+    .hamburger {
+        display: block; /* Show hamburger icon */
+    }
+}
+
+/* For screens smaller than 768px (e.g., small tablets and large smartphones) */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 8px;
+    }
+    .nav-links a {
+        padding: 10px 15px; /* Adjust padding for smaller touch targets */
+    }
+}
+
+/* For screens smaller than 576px (e.g., smartphones) */
+@media (max-width: 576px) {
+    .logo {
+        font-size: 1.5rem; /* Smaller logo size */
+    }
+    .nav-links a {
+        font-size: 0.8rem; /* Smaller font for nav links */
+    }
+    .nav-container {
+        padding: 5px;
+    }
+}

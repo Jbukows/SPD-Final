@@ -1,0 +1,99 @@
+{% include 'nav.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Your Dashboard</h2>
+
+        <section class="dashboard-section">
+            <h3>Your Listings</h3>
+            {% if listings %}
+                <div class="listing-grid">
+                    {% for resource in listings %}
+                        <div class="listing-card">
+                            <div class="listing-content">
+                                <div class="listing-info">
+                                    <h4>{{ resource['title'] }}</h4>
+                                    {% if resource['images'] %}
+                                        <img src="{{ url_for('static', filename=resource['images']) }}" alt="Resource Image" class="listing-image">
+                                    {% else %}
+                                        <p>No image available</p>
+                                    {% endif %}
+                                    <p>{{ resource['description'] }}</p>
+                                    <p><strong>Category:</strong> {{ resource['category'] }}</p>
+                                    <p><strong>Date Posted:</strong> {{ resource['date_posted'] }}</p>
+                                </div>
+        
+                                <!-- Delete button -->
+                                <form action="{{ url_for('delete_resource', resource_id=resource['resource_id']) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this resource?');" class="delete-form">
+                                    <button type="submit" class="btn-delete">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>You have no listings yet. <a href="{{ url_for('add_resource') }}">Add a new resource</a>!</p>
+            {% endif %}
+        </section>
+        <section class="dashboard-section">
+            <h3>Your Reservations</h3>
+            {% if reservations %}
+                <div class="reservation-list">
+                    {% for reservation in reservations %}
+                        <div class="reservation-card">
+                            <h4>{{ reservation['resource_title'] }}</h4>
+                            {% if reservation['resource_image'] %}
+                                <img src="{{ url_for('static', filename=reservation['resource_image']) }}" alt="Resource Image" class="listing-image">
+                            {% endif %}
+                            <p><strong>Start Date:</strong> {{ reservation['start_date'] }}</p>
+                            <p><strong>End Date:</strong> {{ reservation['end_date'] }}</p>
+                            <p><strong>Status:</strong> {{ reservation['status'] }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>You have no upcoming reservations.</p>
+            {% endif %}
+        </section>
+        <section class="dashboard-section">
+            <h3>Reservations Pending Your Approval</h3>
+            {% if pending_reservations %}
+                <div class="reservation-list">
+                    {% for reservation in pending_reservations %}
+                        <div class="reservation-card">
+                            <h4>{{ reservation['resource_title'] }}</h4>
+                            <p><strong>Reserved by:</strong> {{ reservation['user_name'] }}</p>
+                            <p><strong>Start Date:</strong> {{ reservation['start_date'] }}</p>
+                            <p><strong>End Date:</strong> {{ reservation['end_date'] }}</p>
+                            <p><strong>Status:</strong> {{ reservation['status'] }}</p>
+                            <div class="approve-decline">
+                            <form action="{{ url_for('accept_reservation', reservation_id=reservation['reservation_id']) }}" method="POST" style="display:inline;">
+                                <button type="submit" class="btn-approve">Accept</button>
+                            </form>
+                            <form action="{{ url_for('decline_reservation', reservation_id=reservation['reservation_id']) }}" method="POST" style="display:inline;">
+                                <button type="submit" class="btn-reject">Decline</button>
+                            </form>
+                        </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>No reservations pending your approval.</p>
+            {% endif %}
+        </section>
+    </div>
+</body>
+</html>
+
+
+
+
+
